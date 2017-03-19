@@ -14,13 +14,13 @@ let config = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				use: 'babel-loader'
 			},
 			{
 				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract({
-					fallbackLoader: 'style-loader',
-					loader: ['css-loader', 'sass-loader']
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: ['css-loader', 'sass-loader']
 				})
 			}
 		]

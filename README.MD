@@ -11,15 +11,24 @@ ArcSwell hits an API and expects a JSON file containing image information in the
 	"count": 3,
 	"images": [
 		{
-			"src": image_url,
+			"src": {
+			  "thumb": image_thumb_url,
+			  "full": image_url
+			},
 			"text": "Caption info"
 		},
 		{
-			"src": image_url,
+			"src": {
+			  "thumb": image_thumb_url,
+			  "full": image_url
+			},
 			"text": "Caption info"
 		},
 		{
-			"src": image_url,
+			"src": {
+			  "thumb": image_thumb_url,
+			  "full": image_url
+			},
 			"text": "Caption info"
 		},
 		...

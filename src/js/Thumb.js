@@ -7,10 +7,9 @@ define(['Modal'], function(Modal) {
 
 	Thumb.prototype = {
 		build: function() {
-			console.log("thumbsrc", this.summary);
 			this.thumb_img = document.createElement('img');
 
-			this.thumb_img.src = this.src;
+			this.thumb_img.src = this.src.thumb;
 			this.thumb_img.alt = this.summary;
 			this.thumb_img.title = this.summary;
 			this.thumb_img.dataset.swellThumbId = this.id;
@@ -18,7 +17,7 @@ define(['Modal'], function(Modal) {
 
 			this.thumb_img.addEventListener('click', function() {
 				Modal.show({
-					src: this.src,
+					src: this.src.full,
 					summary: this.summary
 				})
 			}.bind(this));

@@ -35,9 +35,6 @@ define(['Thumb'], function(Thumb) {
 			this.image_count = this.image_data.count;
 			this.images = this.image_data.images;
 
-			console.log("count: ", this.image_count);
-			console.log("images: ", this.images);
-
 			for (var i = 0; i < this.image_count; i++) {
 				console.log("test", this.images[i]);
 				var thumb = new Thumb({

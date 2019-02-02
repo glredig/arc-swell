@@ -1,14 +1,14 @@
-require('../css/main.scss');
+import '../css/main.scss';
+import Swell from './Swell.js';
 
-define(['Swell'], function(Swell) {
+console.log('running');
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 	console.log('Initializing gallery ...');
-	var containers = document.querySelectorAll('[data-arc-swell]');
+	const containers = document.querySelectorAll('[data-arc-swell]');
 	if (containers.length > 0) {
-		for (var i = 0; i < containers.length; i++) {
-			console.log("dataset", containers[i].dataset);
-			var swell = new Swell({
+		for (let i = 0; i < containers.length; i++) {
+			let swell = new Swell({
 				container: containers[i],
 				url: containers[i].dataset.arcSwell
 			});
@@ -17,4 +17,3 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 });
-})

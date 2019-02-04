@@ -1,8 +1,6 @@
 import '../css/main.scss';
 import Swell from './Swell.js';
 
-console.log('running');
-
 document.addEventListener('DOMContentLoaded', () => {
 	console.log('Initializing gallery ...');
 	const containers = document.querySelectorAll('[data-arc-swell]');

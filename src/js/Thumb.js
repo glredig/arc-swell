@@ -3,10 +3,11 @@ import { show } from './Modal.js';
 export default class Thumb {
 	constructor(config) {
 		this.src = config.src;
-		this.height = config.dimensions.height;
-		this.width = config.dimensions.width;
+		this.height = config.height;
+		this.width = config.width;
 		this.summary = config.summary;
 		this.id = config.id;
+		this.cache = config.cache;
 	}
 
 	build() {
@@ -23,7 +24,9 @@ export default class Thumb {
 				src: this.src.full,
 				summary: this.summary,
 				height: this.height,
-				width: this.width
+				width: this.width,
+				cache: this.cache,
+				id: this.id
 			})
 		});
 

@@ -84,13 +84,66 @@ export class Popup {
 	}
 }
 
+function measure_image(config, cache) {
+	return new Promise((resolve, reject) => {
+		let measure_box = document.createElement('div');
+		let stand_in = new Image();
+
+		stand_in.onload = function onImageLoad() {
+			cache[config.id] = {};
+			cache[config.id].height = this.height;
+			cache[config.id].width = this.width;
+			measure_box.remove();
+			resolve(cache);
+		}
+
+		stand_in.onerror = function onImageError() {
+			reject(`Couldn't load stand-in image`);
+		}
+
+		measure_box.style.position = 'absolute';
+		measure_box.style.left = '-9999px';
+		measure_box.appendChild(stand_in);
+
+		document.body.appendChild(measure_box);
+
+		stand_in.src = config.src;
+	});
+}
+
 export function show(config) {
-	if (popup != undefined) {
-		popup.show(config);
+	let cache = config.cache || {};
+
+	if (cache[config.id] === undefined) {
+		measure_image(config, cache)
+			.then((updated_cache) => {
+				config.height = updated_cache[config.id].height;
+				config.width = updated_cache[config.id].width;
+
+				if (popup != undefined) {
+					popup.show(config);
+				}
+				else {
+					popup = new Popup(config);
+					popup.init();
+					popup.show(config);
+				}
+			})
+			.catch((e) => {
+				console.log("Couldn't get image dimensions");
+			})
 	}
 	else {
-		popup = new Popup(config);
-		popup.init();
-		popup.show(config);
-	}
+		config.height = cache[config.id].height;
+		config.width = cache[config.id].width;
+
+		if (popup != undefined) {
+			popup.show(config);
+		}
+		else {
+			popup = new Popup(config);
+			popup.init();
+			popup.show(config);
+		}
+	}	
 }

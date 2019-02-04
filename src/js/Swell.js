@@ -4,6 +4,7 @@ export default class Swell {
 	constructor(config) {
 		this.url = config.url;
 		this.container = config.container;
+		this.dimensions_cache = {};
 	}
 
 	init() {
@@ -39,8 +40,10 @@ export default class Swell {
 			let thumb = new Thumb({
 				src: this.images[i].src,
 				summary: this.images[i].text,
-				dimensions: this.images[i].dimensions,
-				id: [i]
+				height: this.images[i].height,
+				width: this.images[i].width,
+				id: [i],
+				cache: this.dimensions_cache
 			});
 
 			this.container.appendChild(thumb.build());
